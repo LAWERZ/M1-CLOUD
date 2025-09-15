@@ -197,4 +197,28 @@ Sep 15 08:23:49 vm-cli cloud-init[490]: +----[SHA256]-----+
 Sep 15 08:23:49 vm-cli systemd[1]: Finished Cloud-init: Network Stage.
 mouse@vm-cli:~$
 ```
+### 🌞 Utilisez Terraform pour créer une VM dans Azure
+```
+
+C:\Users\mouse\Desktop\LEO\M1-CLOUD>terraform init
+Initializing the backend...
+Initializing provider plugins...
+- Finding hashicorp/azurerm versions matching "~> 3.0"...
+- Installing hashicorp/azurerm v3.117.1...
+- Installed hashicorp/azurerm v3.117.1 (signed by HashiCorp)
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+```
 
