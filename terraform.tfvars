@@ -1,0 +1,7 @@
+subscription_id      = "11c686ac-e741-43c1-82bf-9967e9b9d5d8"
+resource_group_name  = "meo"
+location             = "francecentral"
+vm_name              = "vm-terra"
+admin_username       = "mouse"
+ssh_public_key_path  = "~/.ssh/cloud_tp1_rsa.pub"
+vm_size              = "Standard_B1s"
