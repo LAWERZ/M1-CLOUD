@@ -1,8 +1,4 @@
-# Déploiement Terraform avec NSG et Preuves
-
-## 2. Ajouter un NSG au déploiement
-
-🌞 **[Ajouter un NSG à votre déploiement Terraform](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group)**
+🌞 Ajouter un NSG à votre déploiement Terraform
 
 ```bash
 variable "my_public_ip" {
@@ -156,9 +152,4 @@ Connexion échouée sur le port 2222 (bloqué par NSG)
 sh
 Copier le code
 $ ssh -i C:/Desktop/mouse/id_mouse -p 2222 mouseAdmin@20.101.**.**
-ssh: connect to host 20.101.**.** port 2222: Connection timed out
-📁 Fichiers attendus
-
--> dossier Terraform
-
-Copier le code
+ssh: connect to host 20.101.**.** port 2222: Connection timed out 
