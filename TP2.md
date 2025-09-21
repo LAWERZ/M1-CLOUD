@@ -1,3 +1,5 @@
+
+
 🌞 Ajouter un NSG à votre déploiement Terraform
 
 ```bash
@@ -29,10 +31,10 @@ resource "azurerm_network_interface_security_group_association" "vm_nsg_assoc" {
   network_interface_id      = azurerm_network_interface.main.id
   network_security_group_id = azurerm_network_security_group.vm_nsg.id
 }
-3. Proofs !
+```
+
 Sortie du terraform apply
-sh
-Copier le code
+```
 $ terraform apply
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
@@ -117,17 +119,15 @@ azurerm_linux_virtual_machine.main: Still creating... [00m30s elapsed]
 azurerm_linux_virtual_machine.main: Creation complete after 59s
 
 Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
-Commande az
-sh
-Copier le code
+```
+```
 az network nic show --resource-group rg-mouseTerraform --name mouse-nic --query "networkSecurityGroup" -o json
 {
   "id": "/subscriptions/xxxx/resourceGroups/rg-mouseTerraform/providers/Microsoft.Network/networkSecurityGroups/mouse-nsg",
   "resourceGroup": "rg-mouseTerraform"
 }
-Commande ssh fonctionnelle
-sh
-Copier le code
+```
+```
 $ ssh -i C:/Desktop/mouse/id_mouse mouseAdmin@20.101.**.**
 The authenticity of host '**.**.**.** (**.**.**.**)' can't be established.
 ED25519 key fingerprint is SHA256:QeE9J2bFFxYZ1Mo2a7lVbBx3LQf5bbt6DeVmckGpF1s.
@@ -137,19 +137,13 @@ Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-1089-azure x86_64)
 
 mouseAdmin@mouseVM:~$
 Changement de port
-Fichier /etc/ssh/sshd_config :
-
-yaml
-Copier le code
-Port 2222
-Vérification avec ss
-sh
-Copier le code
+```
+```
 mouseAdmin@mouseVM:~$ sudo ss -tulnp | grep 2222
 tcp     LISTEN   0        128              0.0.0.0:2222       0.0.0.0:*    users:(("sshd",pid=1634,fd=3))
 tcp     LISTEN   0        128                 [::]:2222          [::]:*    users:(("sshd",pid=1634,fd=4))
-Connexion échouée sur le port 2222 (bloqué par NSG)
-sh
-Copier le code
+```
+```
 $ ssh -i C:/Desktop/mouse/id_mouse -p 2222 mouseAdmin@20.101.**.**
-ssh: connect to host 20.101.**.** port 2222: Connection timed out 
+ssh: connect to host 20.101.**.** port 2222: Connection timed out
+```
