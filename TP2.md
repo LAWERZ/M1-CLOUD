@@ -147,3 +147,51 @@ tcp     LISTEN   0        128                 [::]:2222          [::]:*    users
 $ ssh -i C:/Desktop/mouse/id_mouse -p 2222 mouseAdmin@20.101.**.**
 ssh: connect to host 20.101.**.** port 2222: Connection timed out
 ```
+
+
+
+
+🌞 Donner un nom DNS à votre VM
+
+```
+resource "azurerm_public_ip" "main" {
+  name                = "mouse-ip"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+  allocation_method   = "Dynamic"
+  sku                 = "Basic"
+
+  domain_name_label   = "mouseproject" # ICI
+}
+```
+🌞 Un ptit output nan ?
+```
+output "vm_public_ip" {
+  description = "Public IP de la VM"
+  value       = azurerm_public_ip.main.ip_address
+}
+
+output "vm_public_dns" {
+  description = "Nom DNS public de la VM"
+  value       = azurerm_public_ip.main.fqdn
+}
+```
+🌞 Proofs !
+``
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+vm_public_dns = "mouseproject.francecentral.cloudapp.azure.com"
+vm_public_ip  = "20.105.45.32"
+Commande ssh fonctionnelle avec le nom DNS
+sh
+Copier le code
+$ ssh -i C:/Desktop/mouse/id_mouse mouseAdmin@mouseproject.francecentral.cloudapp.azure.com
+The authenticity of host 'mouseproject.francecentral.cloudapp.azure.com (20.105.45.32)' can't be established.
+ED25519 key fingerprint is SHA256:QeE9J2bFFxYZ1Mo2a7lVbBx3LQf5bbt6DeVmckGpF1s.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'mouseproject.francecentral.cloudapp.azure.com' (ED25519) to the list of known hosts.
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-1089-azure x86_64)
+
+mouseAdmin@mouseVM:~$
